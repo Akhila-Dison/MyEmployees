@@ -7,11 +7,11 @@ namespace MyEmployees.Pages.Employees
     public class frmEditEmployeeModel : PageModel
     {
         public EmployeeInfo EmployeeInfo = new EmployeeInfo();
-        public string errorMessage = "";
-        public string successMessage = "";
+        public String errorMessage = "";
+        public String successMessage = "";
         public void OnGet()
         {
-            string id = Request.Query["id"];
+            String id = Request.Query["id"];
             try
             {
                 string connectionString = "Data Source=.\\sqlexpress;Initial Catalog=MyEmployees;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
@@ -30,7 +30,7 @@ namespace MyEmployees.Pages.Employees
                                 EmployeeInfo.name = reader.GetString(1);
                                 EmployeeInfo.email = reader.GetString(2);
                                 EmployeeInfo.phone = reader.GetString(3);
-                                EmployeeInfo.address = reader.GetString(4);                                  
+                                EmployeeInfo.address = reader.GetString(4);
                             }
                         }
 
@@ -40,12 +40,11 @@ namespace MyEmployees.Pages.Employees
             catch (Exception ex)
             {
                 errorMessage = ex.Message;
-                return;
             }
         }
-        public void OnPost() 
+        public void OnPost()
         {
-            EmployeeInfo.name = Request.Form["id"];
+            EmployeeInfo.id = Request.Form["id"];
             EmployeeInfo.name = Request.Form["name"];
             EmployeeInfo.email = Request.Form["email"];
             EmployeeInfo.phone = Request.Form["phone"];
@@ -63,7 +62,7 @@ namespace MyEmployees.Pages.Employees
                 {
                     connection.Open();
                     String sql = "UPDATE Employee" +
-                                 "SET name=@name,email=@email,phone=@phone,address=@address"+
+                                 "SET name=@name,email=@email,phone=@phone,address=@address" +
                                  "WHERE id=@id";
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
@@ -85,6 +84,8 @@ namespace MyEmployees.Pages.Employees
             }
             Response.Redirect("/Employees/Index");
         }
+
+
 
     }
 }

@@ -7,8 +7,8 @@ namespace MyEmployees.Pages.Employees
     public class frmCreateEmployeeModel : PageModel
     {
         public EmployeeInfo EmployeeInfo = new EmployeeInfo();
-        public string errorMessage = "";
-        public string successMessage = "";
+        public String errorMessage = "";
+        public String successMessage = "";
         public void OnGet()
         {
         }
