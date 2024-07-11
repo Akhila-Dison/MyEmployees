@@ -5,20 +5,27 @@
     {
         String id = Request.Query["id"];
 
-        string connectionString = "Data Source=.\\sqlexpress;Initial Catalog=MyEmployees;Integrated Security=True;TrustServerCertificate=True";
-        using (SqlConnection connection = new SqlConnection(connectionString))
+        // Ensure id is not null or empty before proceeding
+        if (!String.IsNullOrEmpty(id))
         {
-            connection.Open();
-            String sql = "DELECT FROM Employee WHERE id = @id";
-            using (SqlCommand command = new SqlCommand(sql, connection))
+            string connectionString = "Data Source=.\\sqlexpress;Initial Catalog=MyEmployees;Integrated Security=True;TrustServerCertificate=True";
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                command.Parameters.AddWithValue("@id", id);
-                command.ExecuteNonQuery();
+                connection.Open();
+                String sql = "DELETE FROM Employee WHERE id = @id";
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+                    command.ExecuteNonQuery();
+                }
             }
         }
     }
     catch (Exception ex)
     {
+        // Handle or log the exception
     }
-    Response.Redirect("/Clients/Index");
+    Response.Redirect("/Employees/Index");
+}
+
 }

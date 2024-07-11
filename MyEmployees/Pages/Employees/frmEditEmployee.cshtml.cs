@@ -61,9 +61,10 @@ namespace MyEmployees.Pages.Employees
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    String sql = "UPDATE Employee" +
-                                 "SET name=@name,email=@email,phone=@phone,address=@address" +
+                    string sql = "UPDATE Employee " +
+                                 "SET name=@name, email=@email, phone=@phone, address=@address " +
                                  "WHERE id=@id";
+
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         command.Parameters.AddWithValue("@name", EmployeeInfo.name);

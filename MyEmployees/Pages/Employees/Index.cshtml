@@ -30,9 +30,9 @@
             <td>@item.address</td>
             <td>@item.created_at</td>
             <td>
-                <a class="btn btn-primary btn-sm" href="/Employees/frmEditEmployee?id=" style="margin-bottom: 3px";>Edit</a>
+                <a class="btn btn-primary btn-sm" href="/Employees/frmEditEmployee?id=@item.id " style="margin-bottom: 3px" ;>Edit</a>
 
-                <a class="btn btn-danger btn-sm" href="/Employees/frmDeleteEmployee?id=">Delete</a>
+                <a class="btn btn-danger btn-sm" href="/Employees/frmDeleteEmployee?id=@item.id">Delete</a>
             </td>
         </tr>
         }
